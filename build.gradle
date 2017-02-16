@@ -1,0 +1,19 @@
+apply plugin: "java"
+
+
+repositories {
+        mavenLocal()
+        mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar {
+        manifest {
+        attributes 'Main-Class': 'io.github.cstaudigel.passgenerator.MainApp'
+    }
+    baseName = 'PassGen'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
